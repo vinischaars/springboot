@@ -1,4 +1,4 @@
-package com.example.eventos;
+package enf.eventos;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
