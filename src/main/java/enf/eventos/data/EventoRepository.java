@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import enf.eventos.domain.Evento;
@@ -11,14 +12,16 @@ import enf.eventos.domain.Evento;
 @Repository
 public class EventoRepository {
 
+	@Autowired
+	CommomRepository repository;
+	
 	public List<Evento> findAll() {
 		
-		List<Evento> events = new ArrayList<Evento>();
+		List<Evento> eventos = new ArrayList<Evento>();
 		
-		events.add(new Evento("Show 1", new Date()));
-		events.add(new Evento("Show 2", new Date()));
+		eventos = repository.criarEventos();
 		
-		return events;
+		return eventos;
 	}
 
 }
