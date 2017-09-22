@@ -5,6 +5,8 @@ import java.util.Date;
 public class Event {
 	private String name;
 	private Date date;
+	private Date dataInicioVenda;
+	private Date dataFinalVenda;
 	
 	public Event() {}
 	
