@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import enf.eventos.data.EventRepository;
-import enf.eventos.domain.Event;
+import enf.eventos.data.EventoRepository;
+import enf.eventos.domain.Evento;
 
 @Service
-public class EventsService {
+public class EventosService {
 	
 	@Autowired
-	EventRepository repository;
+	EventoRepository repository;
 	
-	public List<Event> findAll() {
+	public List<Evento> findAll() {
 		return repository.findAll();
 	}
 

@@ -8,17 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import enf.eventos.domain.Event;
-import enf.eventos.service.EventsService;
+import enf.eventos.domain.Evento;
+import enf.eventos.service.EventosService;
 
 @Controller
-public class EventsController {
+public class EventosController {
 	
 	@Autowired
-	EventsService service;
+	EventosService service;
 	
 	@RequestMapping(path="events", method=RequestMethod.GET)
-	public ResponseEntity<List<Event>> listEvents() {
+	public ResponseEntity<List<Evento>> listEvents() {
 		
 		return ResponseEntity.ok(service.findAll());
 	}

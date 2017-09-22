@@ -2,15 +2,15 @@ package enf.eventos.domain;
 
 import java.util.Date;
 
-public class Event {
+public class Evento {
 	private String name;
 	private Date date;
 	private Date dataInicioVenda;
 	private Date dataFinalVenda;
 	
-	public Event() {}
+	public Evento() {}
 	
-	public Event(String name, Date date) {
+	public Evento(String name, Date date) {
 		this.name = name;
 		this.date = date;
 	}
