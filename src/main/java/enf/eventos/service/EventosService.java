@@ -17,5 +17,13 @@ public class EventosService {
 	public List<Evento> findAll() {
 		return repository.findAll();
 	}
+	
+	public List<Evento> findByName(String name){
+		return repository.findByName(name);
+	}
+	
+	public Evento criarEvento(Evento evento) {
+		return repository.criarEvento(evento);
+	}
 
 }

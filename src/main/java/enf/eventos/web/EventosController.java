@@ -4,23 +4,35 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import enf.eventos.domain.Evento;
 import enf.eventos.service.EventosService;
 
-@Controller
+@RestController
+@RequestMapping("/events")
 public class EventosController {
 	
 	@Autowired
 	EventosService service;
 	
-	@RequestMapping(path="events", method=RequestMethod.GET)
-	public ResponseEntity<List<Evento>> listEvents() {
-		
-		return ResponseEntity.ok(service.findAll());
+	@GetMapping
+	public ResponseEntity<List<Evento>> listEvents(@RequestParam(value="name", defaultValue="All") String name) {
+		System.out.println("Teste");
+		if(name.equals("All")) {
+			return ResponseEntity.ok(service.findAll());
+		} else
+			return ResponseEntity.ok(service.findByName(name));
 	}
 	
+	@PostMapping
+	public ResponseEntity<Evento> criarEvento(@RequestBody Evento evento){
+		return ResponseEntity.ok(service.criarEvento(evento));
+	}
+		
 }
