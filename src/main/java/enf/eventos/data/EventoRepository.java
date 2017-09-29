@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,15 +13,11 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import enf.eventos.domain.Evento;
 
 @Repository
 public class EventoRepository {
 
-	@Autowired
-	CommomRepository repository;
-	
 	@Autowired
 	NamedParameterJdbcTemplate jdbc;
 	
@@ -42,17 +36,27 @@ public class EventoRepository {
 			}
 		});
 
-		//eventos = repository.criarEventos();
-		
 		return eventos;
 	}
 	
 	public List<Evento> findByName(String name){
 
-		List<Evento> eventos = new ArrayList<Evento>();
+		String sql = "select * from evento where nome_evento = :nome";
 		
-		//eventos = repository.criarEvento(name);
-		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("nome", name);
+
+		List<Evento> eventos = jdbc.query(sql, params, new RowMapper<Evento>(){
+
+			@Override
+			public Evento mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return new Evento(
+						rs.getLong("id_evento"), 
+						rs.getString("nome_evento"), 
+						rs.getDate("data_evento"));
+			}
+		});
+
 		return eventos;
 		
 	}
@@ -87,9 +91,7 @@ public class EventoRepository {
 		});
 
 		return eventoCriado;
-		
-		//return repository.criarEvento(evento); 
-		
+				
 	}
 
 }

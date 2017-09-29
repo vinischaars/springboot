@@ -12,18 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import enf.eventos.domain.Evento;
-import enf.eventos.service.EventosService;
+import enf.eventos.service.EventoService;
 
 @RestController
-@RequestMapping("/events")
-public class EventosController {
+@RequestMapping("/eventos")
+public class EventoController {
 	
 	@Autowired
-	EventosService service;
+	EventoService service;
 	
 	@GetMapping
 	public ResponseEntity<List<Evento>> listEvents(@RequestParam(value="name", defaultValue="All") String name) {
-		System.out.println("Teste");
 		if(name.equals("All")) {
 			return ResponseEntity.ok(service.findAll());
 		} else

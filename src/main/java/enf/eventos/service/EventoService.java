@@ -9,7 +9,7 @@ import enf.eventos.data.EventoRepository;
 import enf.eventos.domain.Evento;
 
 @Service
-public class EventosService {
+public class EventoService {
 	
 	@Autowired
 	EventoRepository repository;
