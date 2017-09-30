@@ -16,7 +16,6 @@ import enf.eventos.service.IngressoService;
 @RequestMapping("/ingressos")
 public class IngressoController {
 
-
 	@Autowired
 	IngressoService service;
 	

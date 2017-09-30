@@ -64,22 +64,15 @@ public class EventoRepository {
 	public Evento criarEvento(Evento evento){
 
 		String sql = "insert into evento (nome_evento, data_evento) values (:nome, :data)";
-		System.out.println(sql);
-		
-		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-		
+
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("nome", evento.getName());
 		params.put("data", evento.getDate());
-		
+
 		jdbc.update(sql, params);
-		
-		System.out.println(evento.getName());
-		System.out.println(evento.getDate());
-		
+
 		String selectSql = "select * from evento where nome_evento = :nome and data_evento = :data";
-		System.out.println(selectSql);
-				
+
 		Evento eventoCriado = jdbc.queryForObject(selectSql, params, new RowMapper<Evento>() {
 			@Override
 			public Evento mapRow(ResultSet rs, int rowNum) throws SQLException {
