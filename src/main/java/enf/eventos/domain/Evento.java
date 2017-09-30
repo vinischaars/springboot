@@ -1,7 +1,5 @@
 package enf.eventos.domain;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.validation.constraints.Future;
@@ -28,8 +26,8 @@ public class Evento {
 	private String name;
 
 	@NotNull(message="A data do evento é obrigatória")
-	@DateTimeFormat(pattern="dd-MM-yyyy")
-	@JsonFormat(pattern="dd-MM-yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd", locale = "pt-BR", timezone = "Brazil/East")
 	@Future(message="A data do evento deve ser igual ou maior que a de hoje")
 	private Date date;
 		

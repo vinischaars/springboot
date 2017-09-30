@@ -18,8 +18,8 @@ public class IngressoService {
 		return repository.findAll();
 	}
 	
-	public List<Ingresso> findByName(String tipoIngresso){
-		return repository.findByName(tipoIngresso);
+	public List<Ingresso> findById(String idIngresso){
+		return repository.findById(idIngresso);
 	}
 	
 	

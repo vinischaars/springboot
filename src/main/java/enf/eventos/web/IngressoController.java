@@ -20,11 +20,11 @@ public class IngressoController {
 	IngressoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Ingresso>> listaIngressos(@RequestParam(value="tipo", defaultValue="All") String tipoIngresso) {
-		if(tipoIngresso.equals("All")) {
+	public ResponseEntity<List<Ingresso>> listaIngressos(@RequestParam(value="id", defaultValue="All") String idIngresso) {
+		if(idIngresso.equals("All")) {
 			return ResponseEntity.ok(service.findAll());
 		} else
-			return ResponseEntity.ok(service.findByName(tipoIngresso));
+			return ResponseEntity.ok(service.findById(idIngresso));
 	}
 	
 }

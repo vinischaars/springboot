@@ -2,8 +2,6 @@ package enf.eventos.data;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +19,7 @@ public class EventoRepository {
 	@Autowired
 	NamedParameterJdbcTemplate jdbc;
 	
-	public List<Evento> findAll() {
+	public List<Evento> listar() {
 
 		String sql = "select * from evento";
 
@@ -39,12 +37,34 @@ public class EventoRepository {
 		return eventos;
 	}
 	
-	public List<Evento> findByName(String name){
+	public Evento buscarPorId(long id){
+
+		String sql = "select * from evento where id_evento = :id";
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+
+		Evento evento = jdbc.queryForObject(sql, params, new RowMapper<Evento>(){
+
+			@Override
+			public Evento mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return new Evento(
+						rs.getLong("id_evento"), 
+						rs.getString("nome_evento"), 
+						rs.getDate("data_evento"));
+			}
+		});
+
+		return evento;
+		
+	}
+
+	public List<Evento> buscarPorNome(String nome){
 
 		String sql = "select * from evento where nome_evento = :nome";
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("nome", name);
+		params.put("nome", nome);
 
 		List<Evento> eventos = jdbc.query(sql, params, new RowMapper<Evento>(){
 
@@ -70,7 +90,7 @@ public class EventoRepository {
 		params.put("data", evento.getDate());
 
 		jdbc.update(sql, params);
-
+		
 		String selectSql = "select * from evento where nome_evento = :nome and data_evento = :data";
 
 		Evento eventoCriado = jdbc.queryForObject(selectSql, params, new RowMapper<Evento>() {

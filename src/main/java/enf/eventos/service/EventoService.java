@@ -14,12 +14,16 @@ public class EventoService {
 	@Autowired
 	EventoRepository repository;
 	
-	public List<Evento> findAll() {
-		return repository.findAll();
+	public List<Evento> listar() {
+		return repository.listar();
 	}
 	
-	public List<Evento> findByName(String name){
-		return repository.findByName(name);
+	public Evento buscarPorId(long id){
+		return repository.buscarPorId(id);
+	}
+	
+	public List<Evento> buscarPorNome(String nome){
+		return repository.buscarPorNome(nome);
 	}
 	
 	public Evento criarEvento(Evento evento) {

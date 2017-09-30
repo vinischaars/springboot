@@ -38,12 +38,12 @@ public class IngressoRepository {
 		return ingressos;
 	}
 	
-	public List<Ingresso> findByName(String tipoIngresso){
+	public List<Ingresso> findById(String idIngresso){
 
-		String sql = "select * from ingresso where tipo_ingresso = :tipo";
+		String sql = "select * from ingresso where id_ingresso = :id";
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("tipo", tipoIngresso);
+		params.put("id", idIngresso);
 
 		List<Ingresso> ingressos = jdbc.query(sql, params, new RowMapper<Ingresso>(){
 
