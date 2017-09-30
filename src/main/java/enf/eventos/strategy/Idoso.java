@@ -1,6 +1,6 @@
 package enf.eventos.strategy;
 
-public class Estudante implements CalcularDesconto {
+public class Idoso implements CalcularDesconto {
 
 	public double percentualDesconto = 0.5;
 	

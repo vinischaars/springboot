@@ -1,8 +1,8 @@
 package enf.eventos.strategy;
 
-public class Estudante implements CalcularDesconto {
+public class MembroSilver implements CalcularDesconto {
 
-	public double percentualDesconto = 0.5;
+	public double percentualDesconto = 0.6; 
 	
 	@Override
 	public double calcularValorDesconto(double valor) {
